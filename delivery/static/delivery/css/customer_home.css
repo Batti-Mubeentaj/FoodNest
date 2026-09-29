@@ -1,0 +1,498 @@
+/* =================================
+   FOOD NEST - CUSTOMER HOME
+   ================================= */
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =================================
+   PAGE BACKGROUND
+   ================================= */
+
+body {
+    min-height: 100vh;
+
+    padding: 40px 25px;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.38),
+            rgba(0, 0, 0, 0.38)
+        ),
+        url("../food-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+/* =================================
+   WELCOME HEADING
+   ================================= */
+
+h3 {
+    text-align: center;
+
+    color: #ffffff;
+
+    font-size: 32px;
+
+    margin-bottom: 35px;
+
+    text-shadow:
+        2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Food emoji */
+
+h3::before {
+    content: "🍴";
+
+    margin-right: 10px;
+
+    font-size: 35px;
+}
+
+
+/* =================================
+   RESTAURANT TABLE
+   ================================= */
+
+table {
+    width: 95%;
+    max-width: 1200px;
+
+    margin: auto;
+
+    border-collapse: collapse;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.30);
+}
+
+
+/* =================================
+   TABLE HEADER
+   ================================= */
+
+th {
+    background: linear-gradient(
+        135deg,
+        #ff9800,
+        #f4511e
+    );
+
+    color: white;
+
+    padding: 18px 15px;
+
+    font-size: 16px;
+
+    text-align: center;
+}
+
+
+/* =================================
+   TABLE CELLS
+   ================================= */
+
+td {
+    padding: 18px 15px;
+
+    text-align: center;
+
+    color: #333;
+
+    font-size: 15px;
+
+    border-bottom: 1px solid #eee;
+}
+
+
+/* =================================
+   ROW HOVER
+   ================================= */
+
+tbody tr {
+    transition: 0.3s ease;
+}
+
+tbody tr:hover {
+    background: #fff8f0;
+
+    transform: scale(1.005);
+}
+
+
+/* =================================
+   RESTAURANT IMAGE
+   ================================= */
+
+img {
+    width: 140px;
+    height: 90px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.18);
+
+    transition: 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.08);
+}
+
+
+/* =================================
+   VIEW MENU BUTTON
+   ================================= */
+
+td a:not(.location-link) {
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    background: linear-gradient(
+        135deg,
+        #ff9800,
+        #f4511e
+    );
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 25px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 4px 10px rgba(230, 81, 0, 0.25);
+
+    transition: 0.3s ease;
+}
+
+
+td a:not(.location-link):hover {
+    background: linear-gradient(
+        135deg,
+        #f4511e,
+        #e65100
+    );
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 7px 15px rgba(230, 81, 0, 0.35);
+}
+
+
+/* =================================
+   LOCATION LINK
+   ================================= */
+
+.location-link {
+    display: inline-flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #333;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s ease;
+}
+
+
+/* Map text */
+
+.map-text {
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    background: #fff3e0;
+
+    color: #e65100;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    border: 1px solid #ffcc80;
+}
+
+
+.location-link:hover {
+    color: #e65100;
+
+    transform: translateY(-2px);
+}
+
+
+.location-link:hover .map-text {
+    background: #ff6f00;
+
+    color: white;
+}
+
+
+/* =================================
+   LOCATION UNAVAILABLE
+   ================================= */
+
+.no-location {
+    color: #999;
+
+    font-size: 14px;
+
+    font-style: italic;
+}
+
+
+/* =================================
+   MOBILE RESPONSIVE
+   ================================= */
+
+@media (max-width: 800px) {
+
+    body {
+        padding: 25px 10px;
+    }
+
+    h3 {
+        font-size: 25px;
+    }
+
+    table {
+        width: 100%;
+
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 10px 5px;
+    }
+
+    img {
+        width: 90px;
+        height: 65px;
+    }
+
+    td a:not(.location-link) {
+        padding: 8px 12px;
+
+        font-size: 12px;
+    }
+
+    .map-text {
+        font-size: 11px;
+
+        padding: 5px 8px;
+    }
+}
+
+/* =================================
+   BACK BUTTON
+   ================================= */
+
+body .back-button {
+    display: block !important;
+    width: 250px !important;
+
+    padding: 13px !important;
+    margin: 25px auto 30px !important;
+
+    text-align: center !important;
+    text-decoration: none !important;
+
+    background: #1565c0 !important;
+    color: white !important;
+
+    border-radius: 30px !important;
+
+    font-size: 17px !important;
+    font-weight: bold !important;
+
+    box-shadow: 0 7px 18px rgba(21, 101, 192, 0.30) !important;
+
+    transition: all 0.3s ease !important;
+}
+
+body .back-button:hover {
+    background: #2196f3 !important;
+    color: white !important;
+
+    transform: translateY(-2px) scale(1.03) !important;
+
+    box-shadow: 0 10px 22px rgba(21, 101, 192, 0.40) !important;
+}
+
+body .back-button:active {
+    transform: scale(0.97) !important;
+}
+
+/* =================================
+   SEARCH CONTAINER
+   ================================= */
+
+.search-container {
+    width: 85%;
+
+    margin: 25px auto;
+
+    text-align: center;
+}
+
+
+/* =================================
+   SEARCH INPUT
+   ================================= */
+
+.search-container input[type="text"] {
+
+    width: 55%;
+
+    padding: 13px 18px;
+
+    border: 2px solid #ff7043;
+
+    border-radius: 25px 0 0 25px;
+
+    outline: none;
+
+    font-size: 16px;
+
+    box-sizing: border-box;
+}
+
+
+/* =================================
+   SEARCH BUTTON
+   ================================= */
+
+.search-container button {
+
+    padding: 13px 22px;
+
+    border: none;
+
+    border-radius: 0 25px 25px 0;
+
+    background: #ff7043;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-left: -5px;
+
+    transition: 0.3s;
+}
+
+
+.search-container button:hover {
+
+    background: #e64a19;
+
+}
+
+
+/* =================================
+   NOT FOUND MESSAGE
+   ================================= */
+
+.not-found {
+
+    width: 60%;
+
+    margin: 30px auto;
+
+    padding: 25px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    color: #d32f2f;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+.not-found p {
+
+    margin-top: 10px;
+
+    color: #555;
+
+    font-size: 15px;
+
+    font-weight: normal;
+}
+
+
+/* =================================
+   MOBILE SEARCH
+   ================================= */
+
+@media (max-width: 700px) {
+
+    .search-container input[type="text"] {
+
+        width: 65%;
+
+    }
+
+    .search-container button {
+
+        padding: 13px 16px;
+
+    }
+
+    .not-found {
+
+        width: 85%;
+
+    }
+
+}

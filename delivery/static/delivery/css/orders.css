@@ -1,0 +1,429 @@
+/* =========================================
+   FOODNEST - ORDER SUCCESS PAGE
+========================================= */
+
+
+/* =========================================
+   BODY / BACKGROUND
+========================================= */
+
+body {
+    margin: 0;
+    padding: 0;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    /* Food background */
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.55)
+        ),
+        url("../food-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+/* =========================================
+   MAIN ORDER CONTAINER
+========================================= */
+
+.order-container {
+    width: 90%;
+    max-width: 600px;
+
+    padding: 45px 40px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.35);
+
+    text-align: center;
+
+    box-sizing: border-box;
+
+    animation: fadeIn 0.8s ease;
+}
+
+
+/* =========================================
+   SUCCESS ICON
+========================================= */
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 48px;
+
+    background: #e8f8ee;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.15);
+
+    animation: popIn 0.6s ease;
+}
+
+
+/* =========================================
+   MAIN HEADING
+========================================= */
+
+.order-container h1 {
+    margin: 10px 0 18px;
+
+    color: #e85d04;
+
+    font-size: 32px;
+
+    line-height: 1.3;
+
+    font-weight: 700;
+}
+
+
+/* Username
+========================================= */
+
+.order-container h1 span {
+    color: #ff6b35;
+}
+
+
+/* =========================================
+   SUCCESS MESSAGE
+========================================= */
+
+.success-message {
+    margin: 0 0 28px;
+
+    color: #333;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   DELIVERY ADDRESS SECTION
+========================================= */
+
+.address-section {
+    margin: 25px 0;
+}
+
+
+/* Address heading */
+
+.address-section h2 {
+    margin: 0 0 15px;
+
+    color: #222;
+
+    font-size: 24px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   ADDRESS BOX
+========================================= */
+
+.address {
+    width: 100%;
+
+    min-height: 25px;
+
+    padding: 16px 20px;
+
+    box-sizing: border-box;
+
+    background: #fff3df;
+
+    border-left: 5px solid #ff6b35;
+
+    border-radius: 10px;
+
+    color: #222 !important;
+
+    font-size: 17px;
+
+    font-weight: 500;
+
+    line-height: 1.6;
+
+    text-align: left;
+
+    word-break: break-word;
+
+    overflow-wrap: break-word;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   DELIVERY MESSAGE
+========================================= */
+
+.delivery-message {
+    margin: 25px 0;
+
+    color: #333;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* FoodNest name */
+
+.delivery-message strong {
+    color: #e85d04;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   BACK TO CUSTOMER HOME BUTTON
+========================================= */
+
+.back-button {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    padding: 14px 28px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff512f,
+            #f09819
+        );
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================
+   BUTTON HOVER
+========================================= */
+
+.back-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(0, 0, 0, 0.35);
+
+    text-decoration: none;
+}
+
+
+/* =========================================
+   BUTTON ACTIVE
+========================================= */
+
+.back-button:active {
+    transform: translateY(0);
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================
+   FADE-IN ANIMATION
+========================================= */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   SUCCESS ICON ANIMATION
+========================================= */
+
+@keyframes popIn {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    70% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 30px 0;
+    }
+
+    .order-container {
+        width: 90%;
+
+        padding: 35px 30px;
+    }
+
+    .order-container h1 {
+        font-size: 28px;
+    }
+
+    .address-section h2 {
+        font-size: 22px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 20px 0;
+
+        align-items: center;
+    }
+
+    .order-container {
+        width: 92%;
+
+        padding: 30px 20px;
+
+        border-radius: 20px;
+    }
+
+    .success-icon {
+        width: 65px;
+        height: 65px;
+
+        font-size: 38px;
+    }
+
+    .order-container h1 {
+        font-size: 24px;
+    }
+
+    .success-message {
+        font-size: 15px;
+    }
+
+    .address-section h2 {
+        font-size: 20px;
+    }
+
+    .address {
+        padding: 14px 15px;
+
+        font-size: 15px;
+    }
+
+    .delivery-message {
+        font-size: 15px;
+    }
+
+    .back-button {
+        padding: 12px 22px;
+
+        font-size: 15px;
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL SCREENS
+========================================= */
+
+@media (max-width: 350px) {
+
+    .order-container {
+        width: 95%;
+
+        padding: 25px 15px;
+    }
+
+    .order-container h1 {
+        font-size: 21px;
+    }
+
+    .address-section h2 {
+        font-size: 18px;
+    }
+
+    .back-button {
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+}

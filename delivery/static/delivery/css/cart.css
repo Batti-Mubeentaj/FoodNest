@@ -1,0 +1,338 @@
+/* =================================
+   CART PAGE
+   ================================= */
+
+body {
+    margin: 0;
+    padding: 0;
+
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("../food-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: #333;
+}
+
+
+/* =================================
+   CART HEADING
+   ================================= */
+
+.cart-heading {
+    width: 85%;
+
+    margin: 90px auto 20px;
+
+    padding: 15px 20px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.cart-heading h2 {
+    margin: 0;
+
+    color: #333;
+
+    font-size: 22px;
+}
+
+
+/* =================================
+   CART TABLE
+   ================================= */
+
+table {
+    width: 85%;
+
+    margin: 0 auto 20px;
+
+    border-collapse: collapse;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =================================
+   TABLE HEADER
+   ================================= */
+
+table th {
+    padding: 15px;
+
+    background: #ff7043;
+
+    color: white;
+
+    font-size: 16px;
+
+    text-align: center;
+}
+
+
+/* =================================
+   TABLE DATA
+   ================================= */
+
+table td {
+    padding: 14px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #ddd;
+
+    font-size: 15px;
+}
+
+
+/* =================================
+   ROW HOVER
+   ================================= */
+
+table tbody tr:hover {
+    background: #fff3e0;
+}
+
+
+/* =================================
+   ITEM IMAGE
+   ================================= */
+
+table td img {
+    width: 90px;
+
+    height: 70px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =================================
+   ITEM NAME
+   ================================= */
+
+table td:nth-child(2) {
+    font-weight: bold;
+
+    color: #333;
+}
+
+
+/* =================================
+   DESCRIPTION
+   ================================= */
+
+table td:nth-child(3) {
+    color: #333;
+}
+
+
+/* =================================
+   ITEM PRICE
+   ================================= */
+
+table td.item-price {
+    background: #fff3e0;
+
+    color: #c62828;
+
+    font-size: 16px;
+
+    font-weight: bold;
+}
+
+
+/* =================================
+   TOTAL PRICE
+   ================================= */
+
+.total-section {
+    width: 85%;
+
+    margin: 20px auto;
+
+    padding: 15px 20px;
+
+    box-sizing: border-box;
+
+    background: white;
+
+    border-radius: 12px;
+
+    text-align: right;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.total-section h2 {
+    margin: 0;
+
+    color: #c62828;
+
+    font-size: 22px;
+
+    font-weight: bold;
+}
+
+
+/* =================================
+   CHECKOUT BUTTON
+   ================================= */
+
+.checkout-form {
+    text-align: right;
+
+    width: 85%;
+
+    margin: 20px auto;
+}
+
+
+/* Checkout Button */
+
+.checkout-form input[type="submit"] {
+    padding: 13px 30px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #43a047;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.25);
+
+    transition: all 0.3s ease;
+}
+
+
+/* Hover */
+
+.checkout-form input[type="submit"]:hover {
+    background: #2e7d32;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Click */
+
+.checkout-form input[type="submit"]:active {
+    transform: translateY(0);
+}
+
+
+/* =================================
+   BACK TO MENU
+   ================================= */
+
+.back-button {
+    display: inline-block;
+
+    margin-left: 7.5%;
+
+    margin-top: 5px;
+
+    margin-bottom: 30px;
+
+    padding: 11px 22px;
+
+    background: #1565c0;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.2);
+
+    transition: all 0.3s ease;
+}
+
+
+.back-button:hover {
+    background: #0d47a1;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+/* =================================
+   MOBILE
+   ================================= */
+
+@media (max-width: 700px) {
+
+    .cart-heading,
+    table,
+    .total-section,
+    .checkout-form {
+        width: 95%;
+    }
+
+    table th,
+    table td {
+        padding: 8px;
+    }
+
+    table td img {
+        width: 65px;
+        height: 55px;
+    }
+
+    .back-button {
+        margin-left: 2.5%;
+    }
+}

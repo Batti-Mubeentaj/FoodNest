@@ -1,0 +1,446 @@
+/* =====================================================
+   PAGE
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.65),
+            rgba(0, 0, 0, 0.65)
+        ),
+        url("https://images.unsplash.com/photo-1504674900247-0877df9cc836")
+        center / cover fixed no-repeat;
+
+    color: #222;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px 20px;
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.checkout-container {
+
+    width: 850px;
+
+    max-width: 95%;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border-radius: 25px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(8px);
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.checkout-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.checkout-header h1 {
+
+    margin: 0;
+
+    font-size: 38px;
+
+    color: #ff5722;
+}
+
+.checkout-header h2 {
+
+    margin-top: 10px;
+
+    font-size: 20px;
+
+    color: #333;
+}
+
+
+/* =====================================================
+   FOOD LIST
+===================================================== */
+
+.food-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* =====================================================
+   FOOD CARD
+===================================================== */
+
+.food-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 18px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.12);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.food-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =====================================================
+   FOOD IMAGE
+===================================================== */
+
+.food-image-container {
+
+    width: 150px;
+
+    height: 120px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 15px;
+
+    background: #f2f2f2;
+}
+
+
+.food-image {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.3s ease;
+}
+
+
+.food-card:hover .food-image {
+
+    transform: scale(1.06);
+}
+
+
+/* =====================================================
+   NO IMAGE
+===================================================== */
+
+.no-image {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 45px;
+}
+
+
+/* =====================================================
+   FOOD INFORMATION
+===================================================== */
+
+.food-info {
+
+    flex: 1;
+}
+
+
+.food-info h3 {
+
+    margin: 0 0 10px;
+
+    font-size: 25px;
+
+    color: #222;
+}
+
+
+.description {
+
+    margin: 0 0 12px;
+
+    color: #666;
+
+    font-size: 15px;
+}
+
+
+.price {
+
+    margin: 0;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    color: #ff5722;
+}
+
+
+/* =====================================================
+   TOTAL
+===================================================== */
+
+.total-section {
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background: linear-gradient(
+        135deg,
+        #ff5722,
+        #ff9800
+    );
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    font-size: 22px;
+}
+
+.total-section strong {
+
+    font-size: 26px;
+}
+
+
+/* =====================================================
+   PAY BUTTON
+===================================================== */
+
+.pay-button {
+
+    display: block;
+
+    margin: 30px auto 15px;
+
+    padding: 15px 35px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #287be8;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.pay-button:hover {
+
+    background: #125dcc;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
+
+.back-button {
+
+    display: block;
+
+    width: fit-content;
+
+    margin: 15px auto 0;
+
+    padding: 11px 22px;
+
+    background: white;
+
+    color: #333;
+
+    text-decoration: none;
+
+    border-radius: 25px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15);
+
+    transition: 0.2s ease;
+}
+
+
+.back-button:hover {
+
+    background: #f2f2f2;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-box {
+
+    padding: 18px;
+
+    background: #ffe6e6;
+
+    color: #d60000;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   EMPTY CART
+===================================================== */
+
+.empty-cart {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #777;
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    body {
+
+        padding: 20px 10px;
+
+    }
+
+    .checkout-container {
+
+        padding: 20px;
+
+    }
+
+    .checkout-header h1 {
+
+        font-size: 30px;
+
+    }
+
+    .food-card {
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+    .food-image-container {
+
+        width: 180px;
+
+        height: 140px;
+
+    }
+
+    .total-section {
+
+        font-size: 18px;
+
+    }
+
+    .total-section strong {
+
+        font-size: 21px;
+
+    }
+
+}

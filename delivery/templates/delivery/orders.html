@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Order Successful - FoodNest</title>
+
+    <!-- Orders CSS -->
+    <link rel="stylesheet"
+          href="{% static 'delivery/css/orders.css' %}?v=3">
+
+</head>
+
+
+<body>
+
+    <div class="order-container">
+
+        <!-- Success Icon -->
+        <div class="success-icon">
+            ✅
+        </div>
+
+
+        <!-- Success Message -->
+        <h1>
+            Thank you for your order,
+            <span>{{ username }}</span>! 🎉
+        </h1>
+
+
+        <p class="success-message">
+            Your order has been placed successfully.
+        </p>
+
+
+        <!-- ================= DELIVERY ADDRESS ================= -->
+
+        <div class="address-section">
+
+            <h2>
+                📍 Delivery Address
+            </h2>
+
+            <div class="address">
+                {{ customer.address }}
+            </div>
+
+        </div>
+
+
+        <!-- ================= DELIVERY MESSAGE ================= -->
+
+        <div class="delivery-message">
+
+            🚚 Your order will be delivered to this location shortly.
+
+            <br><br>
+
+            Thank you for choosing
+            <strong>FoodNest</strong>! ❤️
+
+        </div>
+
+
+        <!-- ================= BACK TO CUSTOMER HOME ================= -->
+
+        <a href="{% url 'open_customer_home' username %}"
+           class="back-button">
+
+            🏠 Back to Customer Home
+
+        </a>
+
+
+    </div>
+
+
+</body>
+
+</html>

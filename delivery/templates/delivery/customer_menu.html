@@ -1,0 +1,639 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Menu List - FoodNest</title>
+
+
+    <!-- ================= PROFILE CSS ================= -->
+
+    <link rel="stylesheet"
+          href="{% static 'delivery/css/profile.css' %}?v=3">
+
+
+    <!-- ================= CUSTOMER MENU CSS ================= -->
+
+    <link rel="stylesheet"
+          href="{% static 'delivery/css/customer_menu.css' %}?v=3">
+
+
+    <!-- ================= ADD TO CART POPUP CSS ================= -->
+
+    <style>
+
+        /* =====================================
+           SUCCESS POPUP
+        ===================================== */
+
+        .cart-popup {
+
+            position: fixed;
+
+            top: 30px;
+            right: 30px;
+
+            background: linear-gradient(
+                135deg,
+                #ff512f,
+                #f09819
+            );
+
+            color: white;
+
+            padding: 18px 28px;
+
+            border-radius: 12px;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.3);
+
+            z-index: 9999;
+
+            display: none;
+
+            animation: popupSlide 0.4s ease;
+
+        }
+
+
+        /* =====================================
+           POPUP ANIMATION
+        ===================================== */
+
+        @keyframes popupSlide {
+
+            from {
+
+                transform: translateX(120%);
+
+                opacity: 0;
+
+            }
+
+            to {
+
+                transform: translateX(0);
+
+                opacity: 1;
+
+            }
+
+        }
+
+
+        /* =====================================
+           HIDE POPUP
+        ===================================== */
+
+        .cart-popup.hide {
+
+            animation: popupHide 0.4s ease;
+
+        }
+
+
+        @keyframes popupHide {
+
+            from {
+
+                transform: translateX(0);
+
+                opacity: 1;
+
+            }
+
+            to {
+
+                transform: translateX(120%);
+
+                opacity: 0;
+
+            }
+
+        }
+
+
+        /* =====================================
+           ADD TO CART BUTTON
+        ===================================== */
+
+        .add-cart-button {
+
+            display: inline-block;
+
+            padding: 10px 18px;
+
+            background: linear-gradient(
+                135deg,
+                #ff512f,
+                #f09819
+            );
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            border: none;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+        }
+
+
+        .add-cart-button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.25);
+
+        }
+
+
+        .add-cart-button:active {
+
+            transform: scale(0.96);
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         CUSTOMER PROFILE
+    ========================================== -->
+
+    <details class="profile-container">
+
+        <summary class="profile-button">
+
+            👤 {{ username }} ▼
+
+        </summary>
+
+
+        <div class="profile-dropdown">
+
+            <a href="{% url 'logout' %}"
+               class="logout-button"
+               onclick="return confirm('Are you sure you want to logout?');">
+
+                🚪 Logout
+
+            </a>
+
+        </div>
+
+    </details>
+
+
+
+    <!-- =========================================
+         WELCOME
+    ========================================== -->
+
+    <h3>
+
+        Welcome {{ username }}! 👋
+
+    </h3>
+
+
+
+    <!-- =========================================
+         RESTAURANT NAME
+    ========================================== -->
+
+    <h2>
+
+        {{ restaurant.name }} Menu 🍽️
+
+    </h2>
+
+
+
+    <!-- =========================================
+         SEARCH
+    ========================================== -->
+
+    <div class="menu-search-container">
+
+        <form
+            action="{% url 'view_menu' restaurant.id username %}"
+            method="get">
+
+            <input
+                type="text"
+                name="search"
+                value="{{ search }}"
+                placeholder="🔍 Search food item..."
+            >
+
+            <button type="submit">
+
+                Search
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+
+    <!-- =========================================
+         ITEM NOT FOUND
+    ========================================== -->
+
+    {% if search and not itemList %}
+
+        <div class="item-not-found">
+
+            ❌ Item not found
+
+            <p>
+
+                No food item found for
+                "{{ search }}"
+
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+
+    <!-- =========================================
+         GO TO CART
+    ========================================== -->
+
+    <a href="{% url 'show_cart' username %}"
+       class="cart-button">
+
+        🛒 Go to Cart
+
+    </a>
+
+
+
+    <!-- =========================================
+         SUCCESS POPUP
+    ========================================== -->
+
+    <div id="cartPopup"
+         class="cart-popup">
+
+        🛒 Item added to cart successfully! 🎉
+
+    </div>
+
+
+
+    <!-- =========================================
+         MENU TABLE
+    ========================================== -->
+
+    {% if itemList %}
+
+    <table border="1">
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Item name
+                </th>
+
+                <th>
+                    Picture
+                </th>
+
+                <th>
+                    Description
+                </th>
+
+                <th>
+                    Price
+                </th>
+
+                <th>
+                    Is veg?
+                </th>
+
+                <th>
+                    Operation
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for item in itemList %}
+
+            <tr>
+
+                <!-- ITEM NAME -->
+
+                <td>
+
+                    {{ item.name }}
+
+                </td>
+
+
+                <!-- ITEM PICTURE -->
+
+                <td>
+
+                    <img
+                        src="{{ item.picture }}"
+                        alt="{{ item.name }}"
+                        width="120"
+                    >
+
+                </td>
+
+
+                <!-- DESCRIPTION -->
+
+                <td>
+
+                    {{ item.description }}
+
+                </td>
+
+
+                <!-- PRICE -->
+
+                <td>
+
+                    ₹{{ item.price }}
+
+                </td>
+
+
+                <!-- VEG -->
+
+                <td>
+
+                    {% if item.vegeterian %}
+
+                        🟢 Yes
+
+                    {% else %}
+
+                        🔴 No
+
+                    {% endif %}
+
+                </td>
+
+
+                <!-- ADD TO CART -->
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="add-cart-button"
+                        onclick="addToCart(
+                            '{{ item.id }}',
+                            '{{ username|escapejs }}',
+                            '{{ item.name|escapejs }}'
+                        )">
+
+                        🛒 Add to Cart
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% endif %}
+
+
+
+    <!-- =========================================
+         BACK TO CUSTOMER HOME
+    ========================================== -->
+
+    <br>
+    <br>
+
+    <a href="{% url 'open_customer_home' username %}"
+       class="back-button">
+
+        ← Back to Home
+
+    </a>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+        function addToCart(itemId, username, itemName) {
+
+            console.log("Adding item to cart...");
+            console.log("Item ID:", itemId);
+            console.log("Username:", username);
+
+
+            /*
+             * URL matches:
+             *
+             * path(
+             *     'add_to_cart/<int:item_id>/<str:username>',
+             *     views.add_to_cart,
+             *     name='add_to_cart'
+             * )
+             */
+
+            const url =
+                "/add_to_cart/"
+                + itemId
+                + "/"
+                + encodeURIComponent(username);
+
+
+            /*
+             * Send request without leaving
+             * the current page.
+             */
+
+            fetch(url, {
+
+                method: "GET",
+
+                headers: {
+
+                    "X-Requested-With":
+                        "XMLHttpRequest"
+
+                }
+
+            })
+
+            .then(function(response) {
+
+                console.log(
+                    "Server response:",
+                    response.status
+                );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Server returned status "
+                        + response.status
+                    );
+
+                }
+
+
+                return response.text();
+
+            })
+
+            .then(function(data) {
+
+                console.log(
+                    "Add to cart response:",
+                    data
+                );
+
+
+                /*
+                 * Show success popup
+                 */
+
+                showCartPopup(itemName);
+
+            })
+
+            .catch(function(error) {
+
+                console.error(
+                    "Add to cart error:",
+                    error
+                );
+
+
+                alert(
+                    "❌ Unable to add item to cart."
+                );
+
+            });
+
+        }
+
+
+
+        /* =====================================
+           SHOW POPUP
+        ===================================== */
+
+        function showCartPopup(itemName) {
+
+            const popup =
+                document.getElementById(
+                    "cartPopup"
+                );
+
+
+            /*
+             * Clear previous hide animation
+             */
+
+            popup.classList.remove("hide");
+
+
+            /*
+             * Change popup message
+             */
+
+            popup.innerHTML =
+                "🛒 <strong>"
+                + itemName
+                + "</strong> added to cart! 🎉";
+
+
+            /*
+             * Show popup
+             */
+
+            popup.style.display = "block";
+
+
+            /*
+             * Automatically hide after
+             * 2.5 seconds
+             */
+
+            setTimeout(function() {
+
+                popup.classList.add("hide");
+
+
+                /*
+                 * Completely hide popup
+                 * after animation
+                 */
+
+                setTimeout(function() {
+
+                    popup.style.display = "none";
+
+                    popup.classList.remove("hide");
+
+                }, 400);
+
+            }, 2500);
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

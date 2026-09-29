@@ -1,0 +1,212 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Page</title>
+
+    <link rel="stylesheet"
+          href="{% static 'delivery/css/customer_home.css' %}?v=3">
+
+    <link rel="stylesheet"
+          href="{% static 'delivery/css/profile.css' %}?v=3">
+
+</head>
+
+<body>
+
+
+    <!-- Customer Profile -->
+
+    <details class="profile-container">
+
+        <summary class="profile-button">
+            👤 {{ username }} ▼
+        </summary>
+
+        <div class="profile-dropdown">
+
+            <a href="{% url 'logout' %}"
+               class="logout-button"
+               onclick="return confirm('Are you sure you want to logout?');">
+
+                🚪 Logout
+
+            </a>
+
+        </div>
+
+    </details>
+
+
+    <!-- Welcome -->
+
+    <h3>
+        Welcome {{ username }}!
+    </h3>
+
+
+    <!-- Restaurant Search -->
+
+    <div class="search-container">
+
+        <form action="{% url 'open_customer_home' username %}"
+              method="get">
+
+            <input
+                type="text"
+                name="search"
+                value="{{ search }}"
+                placeholder="🔍 Search restaurant..."
+            >
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- Restaurant Not Found -->
+
+    {% if search and not restaurantList %}
+
+        <div class="not-found">
+
+            ❌ Restaurant not found
+
+            <p>
+                No restaurant found for "{{ search }}"
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- Restaurant Table -->
+
+    {% if restaurantList %}
+
+    <table border="1">
+
+        <thead>
+
+            <tr>
+
+                <th>Restaurant name</th>
+
+                <th>Picture</th>
+
+                <th>Cuisine</th>
+
+                <th>Rating</th>
+
+                <th>Operations</th>
+
+                <th>Location</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for r in restaurantList %}
+
+            <tr>
+
+                <td>
+                    {{ r.name }}
+                </td>
+
+
+                <td>
+
+                    <img src="{{ r.picture }}">
+
+                </td>
+
+
+                <td>
+                    {{ r.cuisine }}
+                </td>
+
+
+                <td>
+
+                    <span class="rating">
+                        ⭐ {{ r.rating }}
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <a href="{% url 'view_menu' r.id username %}">
+                        View Menu
+                    </a>
+
+                </td>
+
+
+                <td>
+
+                    {% if r.location %}
+
+                        <a
+                            href="https://www.google.com/maps/search/?api=1&query={{ r.location|urlencode }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="location-link"
+                        >
+
+                            📍 {{ r.location }}
+
+                            <span class="map-text">
+                                🗺️ View Map
+                            </span>
+
+                        </a>
+
+                    {% else %}
+
+                        <span class="no-location">
+                            Location not available
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% endif %}
+
+
+    <!-- Back Button -->
+
+    <a href="{% url 'open_customer_home' username %}" class="back-button">
+    ← Back to Customer Home
+    </a>
+
+
+</body>
+</html>

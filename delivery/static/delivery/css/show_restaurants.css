@@ -1,0 +1,513 @@
+/* =================================
+   FOOD NEST - SHOW RESTAURANTS
+   ================================= */
+
+/* Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =================================
+   BODY / BACKGROUND
+   ================================= */
+
+body {
+    min-height: 100vh;
+
+    padding: 40px 20px;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.38),
+            rgba(0, 0, 0, 0.38)
+        ),
+        url("../food-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+/* =================================
+   TABLE CONTAINER
+   ================================= */
+
+.table-container {
+    width: 95%;
+    max-width: 1250px;
+
+    margin: 20px auto;
+
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =================================
+   TABLE
+   ================================= */
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: white;
+}
+
+
+/* =================================
+   TABLE HEADER
+   ================================= */
+
+th {
+    background: linear-gradient(
+        135deg,
+        #ff6f00,
+        #ff8f00
+    );
+
+    color: white;
+
+    padding: 18px 12px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* =================================
+   TABLE CELLS
+   ================================= */
+
+td {
+    padding: 18px 12px;
+
+    text-align: center;
+
+    color: #333;
+
+    border-bottom: 1px solid #eeeeee;
+
+    vertical-align: middle;
+}
+
+
+/* Last row */
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =================================
+   ROW HOVER
+   ================================= */
+
+tbody tr {
+    transition: 0.3s ease;
+}
+
+tbody tr:hover {
+    background: #fff8f0;
+}
+
+
+/* =================================
+   RESTAURANT NAME
+   ================================= */
+
+.restaurant-name {
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: #333;
+}
+
+
+/* =================================
+   RESTAURANT IMAGE
+   ================================= */
+
+.restaurant-image {
+    width: 120px;
+
+    height: 80px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.18);
+
+    transition: 0.3s ease;
+}
+
+.restaurant-image:hover {
+    transform: scale(1.08);
+}
+
+
+/* =================================
+   CUISINE
+   ================================= */
+
+.cuisine {
+    color: #555;
+
+    font-size: 14px;
+}
+
+
+/* =================================
+   RATING
+   ================================= */
+
+.rating {
+    display: inline-block;
+
+    background: #fff3cd;
+
+    color: #856404;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+
+/* =================================
+   OPERATIONS
+   ================================= */
+
+.operations {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+/* =================================
+   OPERATION BUTTON
+   ================================= */
+
+.operation-btn {
+    width: 165px;
+
+    padding: 9px 12px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    transition: all 0.25s ease;
+
+    box-shadow:
+        0 3px 7px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =================================
+   UPDATE INFO - BLUE
+   ================================= */
+
+.update-btn {
+    background: #1976d2;
+}
+
+.update-btn:hover {
+    background: #0d47a1;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(25, 118, 210, 0.35);
+}
+
+
+/* =================================
+   DELETE - RED
+   ================================= */
+
+.delete-btn {
+    background: #d32f2f;
+}
+
+.delete-btn:hover {
+    background: #b71c1c;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(211, 47, 47, 0.35);
+}
+
+
+/* =================================
+   UPDATE MENU - GREEN
+   ================================= */
+
+.menu-btn {
+    background: #2e7d32;
+}
+
+.menu-btn:hover {
+    background: #1b5e20;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(46, 125, 50, 0.35);
+}
+
+
+/* =================================
+   LOCATION BADGE
+   ================================= */
+
+.location-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    background: #fff3e0;
+
+    color: #e65100;
+
+    padding: 8px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    max-width: 160px;
+
+    word-wrap: break-word;
+
+    border: 1px solid #ffcc80;
+}
+
+
+/* =================================
+   LOCATION MAP LINK
+   ================================= */
+
+.location-link {
+    display: inline-flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 5px;
+
+    background: #fff3e0;
+
+    color: #e65100;
+
+    padding: 8px 12px;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    border: 1px solid #ffcc80;
+
+    transition: all 0.25s ease;
+}
+
+.location-link:hover {
+    background: #ffe0b2;
+
+    color: #e65100;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 4px 10px rgba(230, 81, 0, 0.20);
+}
+
+
+/* View Map text */
+
+.map-text {
+    font-size: 11px;
+
+    color: #1976d2;
+
+    font-weight: bold;
+}
+
+
+/* =================================
+   NO LOCATION
+   ================================= */
+
+.no-location {
+    color: #999;
+
+    font-size: 13px;
+}
+
+
+/* =================================
+   MOBILE RESPONSIVE
+   ================================= */
+
+@media (max-width: 900px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+    .table-container {
+        width: 100%;
+
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 950px;
+    }
+
+    th {
+        padding: 14px 8px;
+    }
+
+    td {
+        padding: 14px 8px;
+    }
+}
+
+
+/* =================================
+   SMALL MOBILE
+   ================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .table-container {
+        border-radius: 12px;
+    }
+
+    table {
+        min-width: 850px;
+    }
+
+    .restaurant-image {
+        width: 90px;
+
+        height: 65px;
+    }
+
+    .operation-btn {
+        width: 150px;
+
+        font-size: 11px;
+
+        padding: 8px 10px;
+    }
+
+    .location-badge,
+    .location-link {
+        font-size: 11px;
+    }
+}
+
+/* =================================
+   BACK BUTTON
+   ================================= */
+
+.back-button {
+    display: block;
+    width: 250px;
+
+    padding: 13px;
+    margin: 25px auto 0;
+
+    text-align: center;
+    text-decoration: none;
+
+    background: #1565c0 !important;
+    color: white !important;
+
+    border-radius: 30px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    box-shadow:
+        0 7px 18px rgba(21, 101, 192, 0.30);
+
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #2196f3 !important;
+    color: white !important;
+
+    transform: translateY(-2px) scale(1.03);
+
+    box-shadow:
+        0 10px 22px rgba(21, 101, 192, 0.40);
+}
+
+.back-button:active {
+    transform: scale(0.97);
+}

@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'delivery/css/profile.css' %}?v=3">
+    <link rel="stylesheet" href="{% static 'delivery/css/update_restaurant.css' %}?v=2">
+</head>
+<body>
+
+    <!-- Admin Profile -->
+<details class="profile-container">
+
+    <summary class="profile-button">
+        👤 Admin ▼
+    </summary>
+
+    <div class="profile-dropdown">
+
+        <a href="{% url 'logout' %}"
+           class="logout-button"
+           onclick="return confirm('Are you sure you want to logout?');">
+            🚪 Logout
+        </a>
+
+    </div>
+
+</details>
+    <form action="{% url 'update_restaurant' restaurant.id %}" method="post">
+
+        {% csrf_token %}
+
+        <label>Restaurant name</label>
+        <input
+            type="text"
+            name="name"
+            value="{{ restaurant.name }}"
+        >
+        <br><br>
+
+        <label>Picture URL</label>
+        <input
+            type="text"
+            name="picture"
+            value="{{ restaurant.picture }}"
+        >
+        <br><br>
+
+        <label>Cuisine</label>
+        <input
+            type="text"
+            name="cuisine"
+            value="{{ restaurant.cuisine }}"
+        >
+        <br><br>
+
+        <label>Rating</label>
+        <input
+            type="number"
+            name="rating"
+            min="0"
+            max="5"
+            step="0.5"
+            value="{{ restaurant.rating }}"
+        >
+        <br><br>
+
+        <label>Location</label>
+        <input
+            type="text"
+            name="location"
+            value="{{ restaurant.location }}"
+            placeholder="Restaurant name, full address"
+        >
+        <br><br>
+        <br><br>
+
+        <button type="submit">
+            Update Restaurant
+        </button>
+
+        <a href="{% url 'open_show_restaurant' %}" class="back-button">
+        ← Back
+        </a>
+
+    </form>
+    
+</body>
+</html>

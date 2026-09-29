@@ -1,0 +1,347 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout - FoodNest</title>
+
+    <!-- Checkout CSS -->
+    <link rel="stylesheet"
+          href="{% static 'delivery/css/checkout.css' %}?v=3">
+
+    <!-- Razorpay -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+</head>
+
+<body>
+
+    <div class="checkout-container">
+
+        <!-- ================= HEADER ================= -->
+
+        <div class="checkout-header">
+
+            <h1>🛒 Checkout</h1>
+
+            <h2>
+                Welcome, {{ username }} 👋
+            </h2>
+
+        </div>
+
+
+        {% if error %}
+
+            <!-- ================= ERROR ================= -->
+
+            <div class="error-box">
+
+                ❌ {{ error }}
+
+            </div>
+
+            <a href="{% url 'show_cart' username %}"
+               class="back-button">
+
+                ← Back to Cart
+
+            </a>
+
+        {% else %}
+
+
+            <!-- ================= FOOD ITEMS ================= -->
+
+            <div class="food-list">
+
+                {% for item in cart_items %}
+
+                <div class="food-card">
+
+                    <!-- FOOD IMAGE -->
+
+                    <div class="food-image-container">
+
+                        {% if item.picture %}
+
+                            <img src="{{ item.picture }}"
+                                 alt="{{ item.name }}"
+                                 class="food-image">
+
+                        {% else %}
+
+                            <div class="no-image">
+                                🍽️
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- FOOD INFORMATION -->
+
+                    <div class="food-info">
+
+                        <h3>
+                            {{ item.name }}
+                        </h3>
+
+                        <p class="description">
+                            {{ item.description }}
+                        </p>
+
+                        <p class="price">
+                            ₹{{ item.price }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% empty %}
+
+                <p class="empty-cart">
+                    Your cart is empty.
+                </p>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- ================= TOTAL ================= -->
+
+            <div class="total-section">
+
+                <span>Total Amount</span>
+
+                <strong>
+                    ₹{{ total_price }}
+                </strong>
+
+            </div>
+
+
+            <!-- ================= PAYMENT ================= -->
+
+            <button
+                id="rzp-button"
+                type="button"
+                class="pay-button">
+
+                💳 Pay with Razorpay
+
+            </button>
+
+
+            <!-- ================= BACK ================= -->
+
+            <a href="{% url 'show_cart' username %}"
+               class="back-button">
+
+                ← Back to Cart
+
+            </a>
+
+
+            <!-- ================================================= -->
+            <!-- RAZORPAY JAVASCRIPT -->
+            <!-- ================================================= -->
+
+            <script>
+
+                console.log("========== RAZORPAY DEBUG ==========");
+
+                console.log(
+                    "Key:",
+                    "{{ razorpay_key_id }}"
+                );
+
+                console.log(
+                    "Order ID:",
+                    "{{ order_id }}"
+                );
+
+                console.log(
+                    "Amount:",
+                    "{{ amount }}"
+                );
+
+                console.log("====================================");
+
+
+                /* ================= RAZORPAY OPTIONS ================= */
+
+                var options = {
+
+                    "key": "{{ razorpay_key_id }}",
+
+                    "amount": "{{ amount|floatformat:0 }}00",
+
+                    "currency": "INR",
+
+                    "name": "FoodNest",
+
+                    "description": "Food Nest Order Payment",
+
+                    "order_id": "{{ order_id }}",
+
+
+                    /* ================= SUCCESS ================= */
+
+                    "handler": function(response) {
+
+                        console.log(
+                            "========== PAYMENT SUCCESS =========="
+                        );
+
+                        console.log(
+                            "Payment ID:",
+                            response.razorpay_payment_id
+                        );
+
+                        console.log(
+                            "Order ID:",
+                            response.razorpay_order_id
+                        );
+
+                        console.log(
+                            "Signature:",
+                            response.razorpay_signature
+                        );
+
+
+                        alert(
+                            "Payment Successful! 🎉"
+                        );
+
+
+                        window.location.href =
+                            "{% url 'orders' username %}";
+
+                    },
+
+
+                    /* ================= CUSTOMER ================= */
+
+                    "prefill": {
+
+                        "name":
+                            "{{ username }}",
+
+                        "email":
+                            "customer@example.com",
+
+                        "contact":
+                            "9999999999"
+
+                    },
+
+
+                    /* ================= THEME ================= */
+
+                    "theme": {
+
+                        "color":
+                            "#528FF0"
+
+                    }
+
+                };
+
+
+                console.log(
+                    "Actual Razorpay Key:",
+                    options.key
+                );
+
+                console.log(
+                    "Actual Razorpay Order ID:",
+                    options.order_id
+                );
+
+                console.log(
+                    "Actual Razorpay Amount:",
+                    options.amount
+                );
+
+
+                /* ================= CREATE RAZORPAY ================= */
+
+                var rzp =
+                    new Razorpay(options);
+
+
+                /* ================= PAYMENT FAILED ================= */
+
+                rzp.on(
+                    'payment.failed',
+                    function(response) {
+
+                        console.log(
+                            "========== PAYMENT FAILED =========="
+                        );
+
+                        console.log(
+                            "Full Response:",
+                            response
+                        );
+
+                        console.log(
+                            "Error:",
+                            response.error
+                        );
+
+
+                        alert(
+
+                            "Payment Failed!\n\n" +
+
+                            "Code: " +
+                            response.error.code +
+
+                            "\n\nDescription: " +
+                            response.error.description +
+
+                            "\n\nReason: " +
+                            response.error.reason
+
+                        );
+
+                    }
+                );
+
+
+                /* ================= PAY BUTTON ================= */
+
+                document
+                    .getElementById("rzp-button")
+                    .onclick = function(e) {
+
+                        e.preventDefault();
+
+                        console.log(
+                            "Opening Razorpay Checkout..."
+                        );
+
+                        rzp.open();
+
+                    };
+
+            </script>
+
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

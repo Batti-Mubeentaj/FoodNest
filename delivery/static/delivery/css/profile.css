@@ -1,0 +1,120 @@
+/* =================================
+   PROFILE CONTAINER
+   ================================= */
+
+.profile-container {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+
+    z-index: 1000;
+}
+
+
+/* =================================
+   PROFILE BUTTON
+   ================================= */
+
+.profile-button {
+    display: flex;
+
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    color: #333;
+
+    border-radius: 25px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.25);
+
+    list-style: none;
+
+    transition: all 0.3s ease;
+}
+
+
+/* Remove default arrow */
+
+.profile-button::-webkit-details-marker {
+    display: none;
+}
+
+.profile-button::marker {
+    display: none;
+}
+
+
+/* Profile hover */
+
+.profile-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.30);
+}
+
+
+/* =================================
+   PROFILE DROPDOWN
+   ================================= */
+
+.profile-dropdown {
+    position: absolute;
+
+    top: 55px;
+
+    right: 0;
+
+    min-width: 160px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
+
+    overflow: hidden;
+}
+
+
+/* =================================
+   LOGOUT BUTTON
+   ================================= */
+
+.logout-button {
+    display: block;
+
+    width: 100%;
+
+    padding: 13px 18px;
+
+    background: white;
+
+    color: #d32f2f;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+    background: #ffebee;
+
+    color: #b71c1c;
+}

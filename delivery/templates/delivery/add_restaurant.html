@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Restaurant</title>
+
+    <link rel="stylesheet" href="{% static 'delivery/css/add_restaurant.css' %}?v=3">
+    <link rel="stylesheet" href="{% static 'delivery/css/profile.css' %}?v=3">
+</head>
+
+<body>
+
+    <!-- Admin Profile -->
+<details class="profile-container">
+
+    <summary class="profile-button">
+        👤 Admin ▼
+    </summary>
+
+    <div class="profile-dropdown">
+
+        <a href="{% url 'logout' %}"
+           class="logout-button"
+           onclick="return confirm('Are you sure you want to logout?');">
+            🚪 Logout
+        </a>
+
+    </div>
+
+</details>
+
+    <form action="{% url 'add_restaurant' %}" method="post">
+        {% csrf_token %}
+        
+        <label>Restaurant name</label>
+        <input type="text" name="name" required>
+
+        <br><br>
+
+        <label>Picture url</label>
+        <input type="text" name="picture" required>
+
+        <br><br>
+
+        <label>Cuisine</label>
+        <input type="text" name="cuisine" required>
+
+        <br><br>
+
+        <label>Rating</label>
+        <input type="number" name="rating" min="0" max="5" step="0.5" required>
+
+        <br><br>
+
+        <label>Location</label>
+        <input type="text" name="location" required>
+
+        <br><br>
+
+        <button type="submit">Add Restaurant</button>
+
+        <a href="{% url 'open_admin_home' %}" class="back-button">
+            ← Back
+        </a>
+
+    </form>
+
+</body>
+</html>

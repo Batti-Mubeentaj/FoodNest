@@ -1,0 +1,194 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Cart</title>
+
+    <link rel="stylesheet"
+          href="{% static 'delivery/css/profile.css' %}?v=3">
+
+    <link rel="stylesheet"
+          href="{% static 'delivery/css/cart.css' %}?v=4">
+
+</head>
+
+<body>
+
+
+    <!-- ================= CUSTOMER PROFILE ================= -->
+
+    <details class="profile-container">
+
+        <summary class="profile-button">
+            👤 {{ username }} ▼
+        </summary>
+
+        <div class="profile-dropdown">
+
+            <a href="{% url 'logout' %}"
+               class="logout-button"
+               onclick="return confirm('Are you sure you want to logout?');">
+
+                🚪 Logout
+
+            </a>
+
+        </div>
+
+    </details>
+
+
+    <!-- ================= CART HEADING ================= -->
+
+    <div class="cart-heading">
+
+        <h2>
+            Hi {{ username }}, here are your items 🛒
+        </h2>
+
+    </div>
+
+
+    <!-- ================= CART TABLE ================= -->
+
+    {% if itemList %}
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Item Image</th>
+
+                <th>Name</th>
+
+                <th>Description</th>
+
+                <th>Price</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for item in itemList %}
+
+            <tr>
+
+                <td>
+
+                    <img src="{{ item.picture }}">
+
+                </td>
+
+
+                <td>
+
+                    {{ item.name }}
+
+                </td>
+
+
+                <td>
+
+                    {{ item.description }}
+
+                </td>
+
+
+                <td class="item-price">
+
+                    ₹{{ item.price }}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+
+    <!-- ================= TOTAL PRICE ================= -->
+
+    <div class="total-section">
+
+        <h2>
+
+            Total Price : ₹{{ total_price }}
+
+        </h2>
+
+    </div>
+
+
+    <!-- ================= CHECKOUT ================= -->
+
+    <form action="{% url 'checkout' username %}"
+          method="get"
+          class="checkout-form">
+
+        <input type="submit"
+               value="CHECK OUT">
+
+    </form>
+
+
+{% else %}
+
+    <!-- ================= EMPTY CART ================= -->
+
+    <div class="total-section">
+
+        <h2>
+            🛒 Your cart is empty
+        </h2>
+
+        <p>
+            Please add some food items before checkout.
+        </p>
+
+    </div>
+
+{% endif %}
+
+
+    <!-- ================= BACK BUTTON ================= -->
+
+    {% if restaurant_id %}
+
+        <a href="{% url 'view_menu' restaurant_id username %}"
+           class="back-button">
+
+            ← Back to Menu
+
+        </a>
+
+    {% else %}
+
+        <a href="{% url 'open_customer_home' username %}"
+           class="back-button">
+
+            ← Back to Home
+
+        </a>
+
+    {% endif %}
+
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome page</title>
+    
+    <link rel="stylesheet" href="{% static 'delivery/css/index.css' %}?v=2">
+        
+</head>
+<body>
+
+    <div class="welcome-card">
+
+        <div class="food-icon">🍴</div>
+
+        <h1>Welcome to Food Nest</h1>
+
+        <p class="welcome-text">
+            Delicious food delivered right to your doorstep 🍕🍔
+        </p>
+
+        <h3>If you are a new user?</h3>
+
+        <a href="{% url 'open_signup' %}" class="food-button signup-button">
+            🍽️ Sign Up
+        </a>
+
+        <h3>If you are an existing user?</h3>
+
+        <a href="{% url 'open_login' %}" class="food-button login-button">
+            🔐 Login
+        </a>
+
+    </div>
+
+</body>
+</html>

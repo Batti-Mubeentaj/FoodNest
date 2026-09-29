@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+
+    <link rel="stylesheet"
+          href="{% static 'delivery/css/admin_home.css' %}?v=2">
+
+    <link rel="stylesheet"
+          href="{% static 'delivery/css/profile.css' %}?v=3">
+</head>
+
+<body>
+
+    <!-- Admin Profile -->
+    <details class="profile-container">
+
+        <summary class="profile-button">
+            👤 Admin ▼
+        </summary>
+
+        <div class="profile-dropdown">
+
+            <a href="{% url 'logout' %}"
+               class="logout-button"
+               onclick="return confirm('Are you sure you want to logout?');">
+                🚪 Logout
+            </a>
+
+        </div>
+
+    </details>
+
+
+    <!-- Admin Home -->
+
+    <div class="admin-card">
+
+        <div class="admin-icon">👨‍🍳</div>
+
+        <h3>Welcome to Admin Home!</h3>
+
+        <a href="{% url 'open_add_restaurant' %}"
+           class="add-restaurant-button">
+            ➕ Add New Restaurant
+        </a>
+
+        <a href="{% url 'open_show_restaurant' %}"
+           class="show-restaurant-button">
+            🍽️ Show Restaurants
+        </a>
+
+        <a href="{% url 'open_login' %}"
+           class="back-button">
+            ← Back
+        </a>
+
+    </div>
+
+</body>
+</html>
